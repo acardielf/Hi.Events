@@ -256,7 +256,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return $this->db->table('order_items')
             ->join('orders', 'order_items.order_id', '=', 'orders.id')
-            ->whereIn('orders.status', [OrderStatus::COMPLETED->name, OrderStatus::CANCELLED->name])
+            ->whereIn('orders.status', [OrderStatus::COMPLETED->name, OrderStatus::AWAITING_OFFLINE_PAYMENT->name, OrderStatus::CANCELLED->name])
             ->where('order_items.product_id', $productId)
             ->exists();
     }
